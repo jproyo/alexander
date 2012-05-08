@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="content">
+    <div class="page-header">
+      <h1>Person Entity</h1>
+    </div>
+    <div class="row">
+      <div class="span12">
+        <a href="person/new" class="btn btn-success">New</a>
+        <table id="users-table" class="table table-striped">
+         <thead>
+           <tr>
+             <th>User Name</th>
+             <th>First Name</th>
+             <th>Last Name</th>
+             <th>Actions</th>
+           </tr>
+         </thead>
+         <tbody id="persons-list-container">
+         </tbody>
+       </table>
+     </div>
+  </div>
+  <script id="persons-list-tmpl" type="text/x-jquery-tmpl">
+    <tr>
+      <td>${user_name}</td>
+      <td>${first_name}</td>
+      <td>${last_name}</td>
+      <td><a class="btn info" href="skills/${id}">Update</a>
+      <input type="button" data-id="${id}" class="btn destroy-btn" value="Remove"/></td>
+    </tr>
+  </script>
+</div>

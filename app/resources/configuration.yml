@@ -1,0 +1,8 @@
+development:
+ crono_base_url: https://crono.zauberlabs.com/0.10.2/api/
+ crono_user: juanroyo
+ crono_pass: juanpassword
+test:
+ crono_base_url: https://crono.zauberlabs.com/0.10.2/api/
+ crono_user: christian
+ crono_pass: TO_BE_CHANGED
