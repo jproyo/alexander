@@ -12,7 +12,7 @@ module Helpers
 
 end
 
-module SkillHub
+module Persons
 
   # Main Application Controller
   class Main < Sinatra::Base
@@ -32,12 +32,18 @@ module SkillHub
     end
 
     get '/person/new' do
-      erb  :person_new
+      erb  :person_new, :locals => {:person => Person.new}
+    end
+
+    get '/person/update/:id' do |id|
+      erb  :person_new, :locals => {:person => Person.get(id)}
     end
 
     post '/person' do
       logger.info params
-      Person.create(params)
+      person = Person.get(params[:user_name])
+      Person.create(params) if not person
+      person.update(params) if person
       erb :persons
     end
 

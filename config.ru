@@ -6,9 +6,9 @@ require 'main_controller'
 use Rack::Session::Cookie
 
 map "/" do
-  run SkillHub::Main
+  run Persons::Main
 end
 
 map "/api/" do
-  run SkillHub::Api
+  run Persons::Api
 end
