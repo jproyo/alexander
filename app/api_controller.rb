@@ -24,7 +24,7 @@ module Persons
 
     delete '/persons/:id' do |id|
       Person.delete(id)
-      [200]
+      200
     end    
 
     get '/person/new' do
@@ -34,10 +34,10 @@ module Persons
     post '/persons/?' do
       data = JSON.parse(request.body.read)
       logger.info data
-      person = Person.get(data[:user_name])
+      person = Person.get(data["user_name"])
       Person.create(data) if not person
       person.update(data) if person
-      [200]
+      200
     end
 
   end

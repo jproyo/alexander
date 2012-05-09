@@ -37,7 +37,7 @@ window.PersonView = Backbone.View.extend({
             var self = this;
             app.personList.create(this.model.attributes, {
                 success:function () {
-                    app.navigate('person/' + self.model.attributes.user_name, false);
+                    app.navigate('person/detail/' + self.model.attributes.user_name, true);
                 }
             });
         } else {

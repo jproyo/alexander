@@ -16,7 +16,7 @@ var AppRouter = Backbone.Router.extend({
     routes:{
         "":"list",
         "person/new":"newPerson",
-        "person/:user_name":"personDetails"
+        "person/detail/:user_name":"personDetails"
     },
 
     list:function () {
