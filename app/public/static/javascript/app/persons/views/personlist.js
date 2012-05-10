@@ -1,19 +1,21 @@
 window.PersonListView = Backbone.View.extend({
 
-    tagName:'tbody',
+    tagName:'div',
 
     initialize:function () {
+        this.template = _.template(tpl.get('person-list-header'));
         this.model.bind("reset", this.render, this);
         var self = this;
         this.model.bind("add", function (person) {
-            $(self.el).append(new PersonListItemView({model:person}).render().el);
+            $(self.el).find('tbody').append(new PersonListItemView({model:person}).render().el);
         });
     },
 
     render:function (eventName) {
         _.each(this.model.models, function (person) {
-            $(this.el).append(new PersonListItemView({model:person}).render().el);
+            $(this.el).find('tbody').append(new PersonListItemView({model:person}).render().el);
         }, this);
+        $(this.el).html(this.template(this.model));
         return this;
     }
 });

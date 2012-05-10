@@ -31,12 +31,20 @@ module Persons
       Person.new.to_json
     end
 
+    put '/persons/:id' do |id|
+      data = JSON.parse(request.body.read)
+      data.delete("id")
+      logger.info data
+      person = Person.get(id)
+      person.update(data) if person
+      200
+    end
+
     post '/persons/?' do
       data = JSON.parse(request.body.read)
+      data.delete("id")
       logger.info data
-      person = Person.get(data["user_name"])
-      Person.create(data) if not person
-      person.update(data) if person
+      Person.create(data)
       200
     end
 

@@ -1,32 +1,23 @@
 <% @scripts = ["javascript/app/persons/utils.js",
-         "javascript/app/persons/main.js",
          "javascript/app/persons/models/personmodel.js", 
          "javascript/app/persons/views/header.js", 
+         "javascript/app/persons/views/personlist.js",
          "javascript/app/persons/views/persondetails.js", 
-         "javascript/app/persons/views/personlist.js"]%>
+         "javascript/app/persons/main.js"]%>
 <div class="container">
   <div class="content">
     <div class="page-header">
       <h1>Person Entity</h1>
     </div>
-    <div class="row">
+    <div id="row1" class="row">
       <div class="span12">
         <div id="header"/>
-        <table id="users-table" class="table table-striped">
-          <thead>
-            <tr>
-              <th>User Name</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <div id="list"/>
-        </table>
+        <div id="list"/>
      </div>
-  </div>
-  <div class="row">
-    <div id="content"/>
+    </div>
+    <div id="row2" class="row">
+      <div id="content"/>
+    </div>
   </div>
 </div>
 <%= show_scripts%>

@@ -8,7 +8,9 @@ window.PersonView = Backbone.View.extend({
     },
 
     render:function (eventName) {
-        $(this.el).html(this.template(this.model.toJSON()));
+        var model = this.model.toJSON();
+        model.id = model.user_name;
+        $(this.el).html(this.template(model));
         return this;
     },
 
@@ -20,7 +22,7 @@ window.PersonView = Backbone.View.extend({
 
     change:function (event) {
         var target = event.target;
-        console.log('changing ' + target.user_name + ' from: ' + target.defaultValue + ' to: ' + target.value);
+        console.log('changing ' + target.id + ' from: ' + target.defaultValue + ' to: ' + target.value);
         // You could change your model on the spot, like this:
         // var change = {};
         // change[target.name] = target.value;
@@ -29,15 +31,16 @@ window.PersonView = Backbone.View.extend({
 
     savePerson:function () {
         this.model.set({
-            user_name:$('#user_name').val(),
+            user_name:$('#personId').val(),
             first_name:$('#first_name').val(),
             last_name:$('#last_name').val()
         });
         if (this.model.isNew()) {
             var self = this;
-            app.personList.create(this.model.attributes, {
+            app.personList.create(this.model, {
                 success:function () {
-                    app.navigate('person/detail/' + self.model.attributes.user_name, true);
+                    self.model.set("id", self.model.get("user_name"));
+                    app.navigate('person/detail/' + self.model.attributes.id, false);
                 }
             });
         } else {

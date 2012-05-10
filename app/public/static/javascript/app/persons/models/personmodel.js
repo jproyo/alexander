@@ -1,7 +1,8 @@
 window.Person = Backbone.Model.extend({
     urlRoot:"/api/persons",
     defaults:{
-        "user_name":null,
+        "id":null,
+        "user_name": "",
         "first_name":"",
         "last_name":""
     }

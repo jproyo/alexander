@@ -16,16 +16,16 @@ var AppRouter = Backbone.Router.extend({
     routes:{
         "":"list",
         "person/new":"newPerson",
-        "person/detail/:user_name":"personDetails"
+        "person/detail/:id":"personDetails"
     },
 
     list:function () {
         this.before();
     },
 
-    personDetails:function (user_name) {
+    personDetails:function (id) {
         this.before(function () {
-            var person = app.personList.get(user_name);
+            var person = app.personList.get(id);
             app.showView('#content', new PersonView({model:person}));
         });
     },
@@ -58,7 +58,7 @@ var AppRouter = Backbone.Router.extend({
 
 });
 
-tpl.loadTemplates(['header', 'person-details', 'person-list-item'], function () {
+tpl.loadTemplates(['header', 'person-details', 'person-list-item', 'person-list-header'], function () {
     app = new AppRouter();
     Backbone.history.start();
 });
