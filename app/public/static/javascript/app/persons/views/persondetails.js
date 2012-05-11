@@ -37,7 +37,7 @@ window.PersonView = Backbone.View.extend({
         app.personList.create(this.model, {
             success:function () {
                 self.model.set("id", self.model.get("user_name"));
-                app.navigate('person/detail/' + self.model.attributes.id, false);
+                app.navigate('person/after/save/' + self.model.attributes.id, true);
             }
         });
         return false;
@@ -46,7 +46,6 @@ window.PersonView = Backbone.View.extend({
     deletePerson:function () {
         this.model.destroy({
             success:function () {
-                alert('Person deleted successfully');
                 window.history.back();
             }
         });

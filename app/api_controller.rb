@@ -23,7 +23,8 @@ module Persons
     end    
 
     delete '/persons/:id' do |id|
-      Person.delete(id)
+      person = Person.get(id)
+      person.destroy if person
       200
     end    
 

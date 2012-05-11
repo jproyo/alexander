@@ -15,12 +15,29 @@ var AppRouter = Backbone.Router.extend({
 
     routes:{
         "":"list",
+        "person/after/save/:id": "personAfterSave",
         "person/new":"newPerson",
-        "person/detail/:id":"personDetails"
+        "person/detail/:id":"personDetails",
+        "person/delete/:id": "personDelete"
     },
 
     list:function () {
         this.before();
+    },
+
+
+    personDelete: function (id) {
+        var person = app.personList.get(id);
+        person.destroy({
+            success: function () {
+                app.showView('#content', new PersonListView({model:this.personList}));
+            }
+        });
+        return false;
+    },
+
+    personAfterSave: function(id){
+        app.showView('#content', new PersonListView({model:this.personList}));
     },
 
     personDetails:function (id) {
@@ -37,8 +54,7 @@ var AppRouter = Backbone.Router.extend({
     },
 
     showView:function (selector, view) {
-        if (this.currentView)
-            this.currentView.close();
+        if (this.currentView) this.currentView.close();
         $(selector).html(view.render().el);
         this.currentView = view;
         return view;
@@ -50,7 +66,7 @@ var AppRouter = Backbone.Router.extend({
         } else {
             this.personList = new PersonCollection();
             this.personList.fetch({success:function () {
-                $('#list').html(new PersonListView({model:app.personList}).render().el);
+                $('#content').html(new PersonListView({model:app.personList}).render().el);
                 if (callback) callback();
             }});
         }
