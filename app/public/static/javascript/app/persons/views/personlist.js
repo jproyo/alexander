@@ -31,6 +31,7 @@ window.PersonListItemView = Backbone.View.extend({
     },
 
     render:function (eventName) {
+        this.model.set("id", this.model.get("user_name"));
         $(this.el).html(this.template(this.model.toJSON()));
         return this;
     }

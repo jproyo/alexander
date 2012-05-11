@@ -33,18 +33,13 @@ window.PersonView = Backbone.View.extend({
             first_name:$('#first_name').val(),
             last_name:$('#last_name').val()
         });
-        if (this.model.isNew()) {
-            var self = this;
-            app.personList.create(this.model, {
-                success:function () {
-                    self.model.set("id", self.model.get("user_name"));
-                    app.navigate('person/detail/' + self.model.attributes.id, false);
-                }
-            });
-        } else {
-            this.model.save();
-        }
-
+        var self = this;
+        app.personList.create(this.model, {
+            success:function () {
+                self.model.set("id", self.model.get("user_name"));
+                app.navigate('person/detail/' + self.model.attributes.id, false);
+            }
+        });
         return false;
     },
 

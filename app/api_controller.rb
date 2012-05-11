@@ -37,14 +37,7 @@ module Persons
       logger.info data
       person = Person.get(id)
       person.update(data) if person
-      200
-    end
-
-    post '/persons/?' do
-      data = JSON.parse(request.body.read)
-      data.delete("id")
-      logger.info data
-      Person.create(data)
+      Person.create(data) if not person
       200
     end
 
