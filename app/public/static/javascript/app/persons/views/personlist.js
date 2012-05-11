@@ -1,6 +1,6 @@
 window.PersonListView = Backbone.View.extend({
 
-    tagName:'div',
+    tagName: 'table', className: 'table table-striped',
 
     initialize:function () {
         this.template = _.template(tpl.get('person-list-header'));
@@ -12,17 +12,17 @@ window.PersonListView = Backbone.View.extend({
     },
 
     render:function (eventName) {
+        $(this.el).html(this.template(this.model));
         _.each(this.model.models, function (person) {
             $(this.el).find('tbody').append(new PersonListItemView({model:person}).render().el);
         }, this);
-        $(this.el).html(this.template(this.model));
         return this;
     }
 });
 
 window.PersonListItemView = Backbone.View.extend({
 
-    tagName:"tr",
+    tagName: 'tr',
 
     initialize:function () {
         this.template = _.template(tpl.get('person-list-item'));

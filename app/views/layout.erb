@@ -21,22 +21,22 @@
 <body>
   <div class="navbar">
     <div class="navbar-inner">
-      <div class="container">
-        <a class="brand" href="#">ABM Example</a>
-        <div class="nav-collapse">
-          <ul class="nav">
-            <li class="dropdown active">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Entities<b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="/persons">Person</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
+      <a class="brand" href="#">ABM Example</a>
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li class="dropdown active">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Entities<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="/persons">Person</a></li>
+            </ul>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
-  <%= yield %>
+  <div class="container">
+    <%= yield%>
+  </div>
   <footer>
     <p>&copy; Alexander Framework 2012</p>
   </footer>
