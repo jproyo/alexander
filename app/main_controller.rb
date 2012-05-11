@@ -3,7 +3,7 @@ require 'sinatra/static_assets'
 module Helpers
 
   def show_scripts
-    @scripts.inject(""){ |s,element| s + "#{javascript_script_tag(element)}\n"} if (@scripts)
+    @scripts.inject(""){ |s,element| s + "#{javascript_script_tag(element)}\n"} if @scripts
   end
 
   def show_styles

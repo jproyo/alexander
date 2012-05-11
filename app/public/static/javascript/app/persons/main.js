@@ -10,7 +10,6 @@ Backbone.View.prototype.close = function () {
 var AppRouter = Backbone.Router.extend({
 
     initialize:function () {
-        $('#header').html(new HeaderView().render().el);
     },
 
     routes:{
@@ -74,7 +73,7 @@ var AppRouter = Backbone.Router.extend({
 
 });
 
-tpl.loadTemplates(['header', 'person-details', 'person-list-item', 'person-list-header'], function () {
+tpl.loadTemplates(['person-details', 'person-list-item', 'person-list-header'], function () {
     app = new AppRouter();
     Backbone.history.start();
 });
