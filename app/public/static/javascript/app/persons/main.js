@@ -26,7 +26,6 @@ var AppRouter = Backbone.Router.extend({
         this.personList = new PersonCollection();
         this.personList.fetch({success:function () {
             $('#content').html(new PersonListView({model:app.personList, page: p}).render().el);
-            if (callback) callback();
         }});
     },
 
@@ -42,7 +41,7 @@ var AppRouter = Backbone.Router.extend({
     },
 
     personAfterSave: function(id){
-        app.showView('#content', new PersonListView({model:this.personList}));
+        this.list();
     },
 
     personDetails:function (id) {

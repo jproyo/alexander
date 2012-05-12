@@ -12,10 +12,20 @@ window.PersonListView = Backbone.View.extend({
     },
 
     render:function (eventName) {
+
+        var persons = this.model.models;
+        var len = persons.length;
+        var startPos = (this.options.page - 1) * 8;
+        var endPos = Math.min(startPos + 8, len);
+
         $(this.el).html(this.template(this.model));
-        _.each(this.model.models, function (person) {
-            $(this.el).find('tbody').append(new PersonListItemView({model:person}).render().el);
-        }, this);
+
+        for (var i = startPos; i < endPos; i++) {
+            $(this.el).find('tbody').append(new PersonListItemView({model:persons[i]}).render().el);
+        }
+
+        $(this.el).append(new Paginator({model: this.model, page: this.options.page}).render().el);
+
         return this;
     }
 });
