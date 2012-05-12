@@ -14,14 +14,20 @@ var AppRouter = Backbone.Router.extend({
 
     routes:{
         "":"list",
+        "person/page/:page"  : "list",
         "person/after/save/:id": "personAfterSave",
         "person/new":"newPerson",
         "person/detail/:id":"personDetails",
         "person/delete/:id": "personDelete"
     },
 
-    list:function () {
-        this.before();
+    list: function(page) {
+        var p = page ? parseInt(page, 10) : 1;
+        this.personList = new PersonCollection();
+        this.personList.fetch({success:function () {
+            $('#content').html(new PersonListView({model:app.personList, page: p}).render().el);
+            if (callback) callback();
+        }});
     },
 
 
@@ -40,16 +46,12 @@ var AppRouter = Backbone.Router.extend({
     },
 
     personDetails:function (id) {
-        this.before(function () {
-            var person = app.personList.get(id);
-            app.showView('#content', new PersonView({model:person}));
-        });
+        var person = app.personList.get(id);
+        app.showView('#content', new PersonView({model:person}));
     },
 
     newPerson:function () {
-        this.before(function () {
-            app.showView('#content', new PersonView({model:new Person()}));
-        });
+        app.showView('#content', new PersonView({model:new Person()}));
     },
 
     showView:function (selector, view) {
@@ -58,18 +60,6 @@ var AppRouter = Backbone.Router.extend({
         this.currentView = view;
         return view;
     },
-
-    before:function (callback) {
-        if (this.personList) {
-            if (callback) callback();
-        } else {
-            this.personList = new PersonCollection();
-            this.personList.fetch({success:function () {
-                $('#content').html(new PersonListView({model:app.personList}).render().el);
-                if (callback) callback();
-            }});
-        }
-    }
 
 });
 
