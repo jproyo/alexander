@@ -5,8 +5,8 @@ module Alexander
 		def self.create(application, base_path)
 			dest = File.join(base_path, application)
 			Dir.mkdir(dest)
-			src = File.expand_path(File.dirname(__FILE__) + "/../app")
-			FileUtils.cp_r(src, dest)
+			src = File.expand_path(File.dirname(__FILE__) + "/templates")
+			FileUtils.copy_entry(src, dest)
 		end
 	end
 end
