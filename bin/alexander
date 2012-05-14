@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+begin
+  require 'rubygems'
+rescue LoadError
+end
+
+require_relative '../lib/alexander'
+
+Alexander::AppBase.create ARGV[0], File.expand_path(".")
