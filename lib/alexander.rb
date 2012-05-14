@@ -1,15 +1,14 @@
 require 'fileutils'
+require 'thor'
 
 module Alexander
 
-	class AppBase
-		
-		def self.run(file_path)
-			AppBase.send(ARGV[0].to_sym, ARGV[1], file_path)
-		end
+	class AppBase < Thor
 
-		def self.create(application, base_path)
-			dest = File.join(base_path, application)
+		desc "create", "Create a new Alexander application"
+		
+		def create(application)
+			dest = File.join(File.expand_path("."), application)
 			Dir.mkdir(dest)
 			src = File.expand_path(File.dirname(__FILE__) + "/templates")
 			FileUtils.copy_entry(src, dest)
