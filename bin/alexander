@@ -6,4 +6,4 @@ end
 
 require_relative '../lib/alexander'
 
-Alexander::AppBase.create ARGV[0], File.expand_path(".")
+Alexander::AppBase.run File.expand_path(".")
